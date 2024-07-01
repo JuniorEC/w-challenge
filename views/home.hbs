@@ -1,0 +1,72 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Desafio-Usuários</title>
+    <link
+      rel='stylesheet'
+      href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'
+    />
+  </head>
+  <body>
+    <div class='container mt-4'>
+      <h2>Usuários</h2>
+      <table class='table table-bordered'>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nome completo</th>
+            <th>E-mail</th>
+            <th>Endereço</th>
+          </tr>
+        </thead>
+        <tbody data-bind='foreach: users'>
+          <tr>
+            <td data-bind='text: $index() + 1'></td>
+            <td data-bind='text: fullName'></td>
+            <td data-bind='text: email'></td>
+            <td data-bind='text: address'></td>
+          </tr>
+        </tbody>
+      </table>
+      <nav>
+        <ul class='pagination justify-content-center'>
+          <li
+            class='page-item'
+            data-bind='css: { disabled: currentPage() === 1 }'
+          >
+            <a
+              class='page-link'
+              href='#'
+              data-bind='click: prevPage'
+            >Anterior</a>
+          </li>
+          <!-- ko foreach: totalPages -->
+          <li
+            class='page-item'
+            data-bind='css: { active: $data === $parent.currentPage() }'
+          >
+            <a
+              class='page-link'
+              href='#'
+              data-bind='text: $data, click: $parent.setPage.bind($parent, $data)'
+            ></a>
+          </li>
+          <!-- /ko -->
+          <li
+            class='page-item'
+            data-bind='css: { disabled: currentPage() === totalPages().length }'
+          >
+            <a class='page-link' href='#' data-bind='click: nextPage'>Próximo</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
+    <script
+      src='https://cdn.jsdelivr.net/npm/knockout/build/output/knockout-latest.js'
+    ></script>
+    <script src='/js/home.js'></script>
+  </body>
+</html>
